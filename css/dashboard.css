@@ -1,0 +1,353 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+}
+
+:root {
+  --background-color: #f1f1f1;
+  --aside-color: #ffffff;
+  --text-color: rgb(0, 0, 0);
+  --secondary-color: #dfdede;
+  --secondary-font-color: #ff0000;
+  --transitions: 0.3s;
+  --box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+body {
+  background-color: var(--background-color);
+}
+aside {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background-color: var(--aside-color);
+  box-shadow: var(--box-shadow);
+}
+aside .profiles {
+  margin-top: 40px;
+  display: flex;
+  position: relative;
+  margin-left: 20px;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+}
+aside .profiles h1 {
+  color: var(--text-color);
+  font-size: 2em;
+}
+aside .profiles h2 {
+  font-size: 1.5em;
+  color: red;
+}
+
+aside .profiles img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid red;
+}
+
+aside ul {
+  margin-top: 30px;
+  width: 100%;
+}
+aside ul li {
+  padding: 10px;
+  list-style: none;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  transition: var(--transitions);
+}
+aside ul li:hover {
+  background-color: var(--secondary-color);
+}
+aside ul li:hover a span {
+  color: var(--secondary-font-color);
+}
+.li-act {
+  background-color: var(--secondary-color);
+}
+aside ul li a {
+  position: relative;
+  left: 50px;
+  text-decoration: none;
+}
+aside ul li a span {
+  font-size: 1.2em;
+  color: var(--text-color);
+  font-weight: bold;
+}
+main {
+  width: calc(200px- 100%);
+}
+main nav {
+  background-color: var(--aside-color);
+  width: 80%;
+  height: 50px;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  position: fixed;
+  top: 10px;
+  left: 230px;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+.title-sys {
+  margin-left: 15px;
+}
+.title-sys h1 {
+  color: var(--text-color);
+}
+main section {
+  position: relative;
+  top: 60px;
+  width: calc(100% - 200px);
+  left: 200px;
+  min-height: 90.8vh;
+  max-height: 130vh;
+}
+main section .box-wrapper {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  top: 30px;
+  position: relative;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+main section .boxes {
+  height: 40vh;
+  width: 250px;
+  background-color: var(--secondary-color);
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#graph {
+  width: 550px;
+}
+.boxes h1 {
+  color: var(--text-color);
+}
+.table-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-con table {
+  width: 600px;
+  max-height: auto;
+  border: 2px solid black;
+  border-collapse: collapse;
+  margin-top: 130px;
+}
+.table-con table th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+.table-con table td {
+  border: 2px solid black;
+}
+.table-con table th {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+.button-create {
+  position: absolute;
+  margin-top: 70px;
+  left: 20%;
+}
+.button-create button {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--text-color);
+  font-size: 1.1em;
+  transition: var(--transitions);
+}
+.button-create button:hover {
+  transform: scale(1.1);
+}
+.wrapper-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.wrapper-btn button {
+  width: 100px;
+  padding: 10px;
+  border: none;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  transition: var(--transitions);
+}
+.wrapper-btn button:hover {
+  transform: scale(1.1);
+}
+.create-container {
+  width: 400px;
+  height: 50vh;
+  position: absolute;
+  background-color: var(--background-color);
+  box-shadow: var(--box-shadow);
+  top: 50px;
+  left: 400px;
+  display: none;
+  animation: sweetAlertPop 0.3s ease forwards;
+}
+@keyframes sweetAlertPop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.edit-container {
+  width: 400px;
+  height: 50vh;
+  position: absolute;
+  background-color: var(--background-color);
+  box-shadow: var(--box-shadow);
+  top: 50px;
+  left: 400px;
+  display: none;
+  animation: sweetAlertPop 0.3s ease forwards;
+}
+.create-act {
+  display: block;
+}
+.create-header {
+  background-color: var(--secondary-color);
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create-header h1 {
+  color: var(--text-color);
+  letter-spacing: 2px;
+  font-weight: bold;
+  user-select: none;
+}
+.exitbtn img {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 3px;
+  left: 90%;
+  cursor: pointer;
+  transition: var(--transitions);
+}
+.exitbtn:hover img {
+  transform: scale(1.1);
+}
+.input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  margin-top: 30px;
+  gap: 20px;
+}
+.inputbox input {
+  width: 250px;
+  height: 30px;
+  outline-color: var(--secondary-color);
+  text-align: center;
+}
+.inputbox input::placeholder {
+  font-size: 1.1em;
+  text-align: center;
+  font-weight: bold;
+}
+.input-submit input {
+  width: 250px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  transition: var(--transitions);
+  border: none;
+  box-shadow: var(--box-shadow);
+}
+.input-submit input:hover {
+  transform: scale(1.1);
+}
+#edit-wrap {
+  margin-top: 13px;
+}
+.main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  margin-top: 20px;
+}
+table {
+  border-collapse: collapse;
+  padding: 10px;
+  border: 2px solid black;
+  width: 1000px;
+  margin-top: 90px;
+}
+table td,
+th {
+  padding: 10px;
+  text-align: center;
+}
+table td img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid red;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+table td .button-container button {
+  background-color: red;
+  border: none;
+  padding: 10px;
+  width: 100px;
+  color: #fff;
+  cursor: pointer;
+}
+table td .button-container a {
+  background-color: rgb(7, 1, 44);
+  padding: 10px;
+  width: 100px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}

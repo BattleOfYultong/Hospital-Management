@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Slab", serif;
+}
+
+:root {
+  --text-color: black;
+  --transition: 0.3s;
+  --transform: scale(1.1);
+  --main-color: red;
+  --box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  --btn-color: rgb(6, 34, 192);
+  --btn-textcolor: #fff;
+}
+
+body {
+  background-image: url(../images/pexels-karolina-grabowska-4046950.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  height: 70vh;
+  width: 450px;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  border: 2px solid #000000;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.form-title h1 {
+  font-size: 3em;
+  color: var(--main-color);
+}
+.form-wrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.formbox input {
+  width: 350px;
+  padding: 10px;
+  border: none;
+}
+.form-icons {
+  position: absolute;
+  margin-top: 8px;
+  font-size: 1.3em;
+  left: 82%;
+  color: var(--main-color);
+}
+.formbox input[type="submit"] {
+  background-color: var(--btn-color);
+  border: none;
+  font-size: 1.1em;
+  color: var(--btn-textcolor);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.formbox input[type="submit"]:hover {
+  transform: var(--transform);
+}
+.formbox a {
+  color: var(--btn-textcolor);
+  font-size: 1.2em;
+  text-decoration: none;
+}
+.formbox a:hover {
+  color: var(--main-color);
+}
+.formbox select {
+  width: 350px;
+  padding: 10px;
+  border: none;
+}
+.formbox img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+.formbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+.formbox input[type="file"] {
+  padding: 10px;
+  width: 250px;
+  background-color: var(--btn-color);
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--btn-textcolor);
+}
+.editforms input {
+  width: 300px;
+  padding: 10x;
+}
