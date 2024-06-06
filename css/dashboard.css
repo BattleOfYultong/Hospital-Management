@@ -113,8 +113,7 @@ main section {
   top: 60px;
   width: calc(100% - 200px);
   left: 200px;
-  min-height: 90.8vh;
-  max-height: 130vh;
+  height: auto;
 }
 main section .box-wrapper {
   height: auto;
@@ -350,4 +349,160 @@ table td .button-container a {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* for edits */
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.editboximg img {
+  border-radius: 50%;
+  border: 2px solid red;
+  width: 180px;
+  height: 180px;
+}
+.editboxwrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+.editbox label {
+  position: absolute;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.editbox input {
+  margin-left: 100px;
+  padding: 10px;
+  width: 250px;
+}
+.editbox {
+  display: flex;
+  align-items: center;
+}
+.editbox input[type="submit"] {
+  background-color: rgb(7, 1, 44);
+  padding: 10px;
+  color: #fff;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.editbox select {
+  margin-left: 100px;
+  padding: 10px;
+  width: 250px;
+}
+
+/* for button containers */
+
+.button-containers {
+  display: flex;
+  position: absolute;
+  left: 150px;
+  top: 20px;
+  gap: 20px;
+}
+.button-containers button {
+  width: 100px;
+  padding: 10px;
+  color: #fff;
+  background-color: rgb(7, 1, 44);
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.container-form {
+  width: 500px;
+  height: 60vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 2px solid black;
+  position: absolute;
+  z-index: 20;
+  display: none;
+  animation: pop-up 0.3s ease forwards;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+.exiticon1,
+.exiticon2,
+.exiticon3 {
+  position: relative;
+  left: 60%;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+.form-wrap2 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+.formbox2 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.formbox2 img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+.formbox2 input[type="file"] {
+  width: 250px;
+  background-color: rgb(7, 1, 44);
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.formbox2 input {
+  width: 300px;
+  padding: 10px;
+}
+.formbox2 input[type="submit"] {
+  background-color: rgb(7, 1, 44);
+  color: #fff;
+  cursor: pointer;
+}
+.formbox2 select {
+  width: 300px;
+  padding: 10px;
+}
+/* for showing containers */
+.show {
+  display: block;
+}
+
+/*animations */
+@keyframes pop-up {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

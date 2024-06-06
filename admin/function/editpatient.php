@@ -55,7 +55,7 @@ if (isset($_GET['loginID'])) {
         $UserID = $row['loginID'];
         $UserPhoto = "../../uploads/" . $row['Photo'];
         $UserEmail = $row['Email'];
-        $UserPosition = $row['Position'];
+        $UserPosition = $row['Position']; // Assuming this is the correct field
         $UserPassword = $row['Password'];
     } else {
         echo "Error: Record not found.";
@@ -75,16 +75,14 @@ if (isset($_GET['loginID'])) {
     <link rel="stylesheet" href="../../SweetAlert/sweetalert2.min.css" />
     <link rel="stylesheet" href="../../fontawesome-free-6.5.2-web/css/all.min.css" />
     <link rel="stylesheet" href="../../css/dashboard.css">
-    <title>Edit <?php echo " $UserName", " $UserID"  ?></title>
+    <title>Edit <?php echo "$UserName $UserID"; ?></title>
 </head>
 <body>
     <aside>
-        
         <div class="profiles">
             <img src="<?php echo $Photo ?>" alt="">
             <h1><?php echo $NameSession ?></h1>
              <h2><?php echo "$position" ?></h2>
-            
         </div>
         <ul>
             <li class="li-act">
@@ -129,40 +127,42 @@ if (isset($_GET['loginID'])) {
             <div class="main-container">
                 <div class="edits-container">
                     <form class="" action="" method="POST" enctype="multipart/form-data">
-
-                         <div class="editboximg">
-                            <img src="<?php echo "$UserPhoto" ?>" alt="Current Photo" width="100">
+                        <div class="editboximg">
+                            <img src="<?php echo $UserPhoto ?>" alt="Current Photo" width="100">
                         </div>
 
-                    <div class="editboxwrapper">
-                         <div class="editbox">
-                            <label for="name">ID:</label>
-                            <input type="text" name="Name" value="<?php echo $UserID ?>" readonly>
+                        <div class="editboxwrapper">
+                            <div class="editbox">
+                                <label for="name">ID:</label>
+                                <input type="text" name="Name" value="<?php echo $UserID ?>" readonly>
+                            </div>
+
+                            <div class="editbox">
+                                <label for="name">Name:</label>
+                                <input type="text" name="Name" value="<?php echo $UserName ?>">
+                            </div>
+                            <div class="editbox">
+                                <label for="email">Email:</label>
+                                <input type="email" name="Email" value="<?php echo $UserEmail ?>">
+                            </div>
+
+                         
+
+                            <div class="editbox">
+                                <label for="password">Password:</label>
+                                <input type="password" name="Password" value="<?php echo $UserPassword ?>">
+                            </div>
+
+                               <div class="editbox">
+                                <label for="email">Role:</label>
+                                <input type="email" name="Email" value="Patient"readonly>
+                            </div>
+
+                    
                         </div>
 
                         <div class="editbox">
-                            <label for="name">Name:</label>
-                            <input type="text" name="Name" value="<?php echo $UserName?>" >
-                        </div>
-                        <div class="editbox">
-                            <label for="email">Email:</label>
-                            <input type="email" name="Email" value="<?php echo $UserEmail ?>" >
-                        </div>
-
-                         <div class="editbox">
-                            <label for="email">Password:</label>
-                            <input type="email" name="Email" value="<?php echo $UserPassword ?>" >
-                        </div>
-
-                         <div class="editbox">
-                            <label for="email">Role:</label>
-                            <input type="email" name="Email" value="ADMIN" readonly>
-                        </div>
-                     </div>  
-                       
-                       
-                        <div class="editbox">
-                           <input type="Submit" name="Submit" value="Edit">
+                            <input type="submit" name="Submit" value="Edit">
                         </div>
                     </form>
                 </div>

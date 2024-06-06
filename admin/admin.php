@@ -1,28 +1,38 @@
 <?php
-    session_start();
-    if(isset($_SESSION['Email'])){
-        $Email = $_SESSION['Email'];
-            include '../php/config.php';
+session_start();
 
-        $profSql = "SELECT Email, Name, loginID, Photo, Position FROM account_tbl WHERE Email = '$Email'";
-        $result = mysqli_query($connections, $profSql);
+if (isset($_SESSION['Email'])) {
+    $Email = $_SESSION['Email'];
+    include '../php/config.php';
 
-        if($result && mysqli_num_rows($result)){
-            $row = mysqli_fetch_assoc($result);
-            $NameSession = $row['Name'];
-            $NameEmail = $row['Email'];
-            $SessionloginID =$row['loginID'];
-            $Photo = "../uploads/" .$row['Photo'];
+    $profSql = "SELECT Email, Name, loginID, Photo, Account_Type FROM account_tbl WHERE Email = '$Email'";
+    $result = mysqli_query($connections, $profSql);
 
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $NameSession = $row['Name'];
+        $NameEmail = $row['Email'];
+        $SessionloginID = $row['loginID'];
+        $Photo = "../uploads/" . $row['Photo'];
+        $accountPosition = $row['Account_Type'];
+
+        if ($accountPosition == 1) {
+            $position = "Admin";
+        } elseif ($accountPosition == 2) {
+            $position = "Staff";
+        } else {
+            $position = "Patient";
         }
+    } else {
+        // Handle case where query fails or no rows are returned
+        echo "Error fetching user data or no user found.";
+        exit;
     }
-    else{
-        echo "<script>window.location.href='../login.php?show_error=true';</script>";
-        
-    }
-
+} else {
+    echo "<script>window.location.href='../login.php?show_error=true';</script>";
+    exit;
+}
 ?>
-
 
 
 <!DOCTYPE html>
@@ -43,7 +53,7 @@
         <div class="profiles">
             <img src="<?php echo "$Photo"  ?>" alt="">
             <h1><?php echo "$NameSession" ?></h1>
-            <h2>ADMIN</h2>
+            <h2><?php echo "$position" ?></h2>
         </div>
 
         <ul>
@@ -54,13 +64,13 @@
             </li>
 
             <li>
-                <a href="">
+                <a href="staffs.php">
                     <span>Staffs</span>
                 </a>
             </li>
 
             <li>
-                <a href="crud.php">
+                <a href="patient.php">
                     <span>Patients</span>
                 </a>
             </li>
@@ -97,7 +107,12 @@
         <section>
              
             <div class="main-container">
-             
+                <div class="button-containers">
+                    <button onclick="Openadmin()">ADD ADMIN</button>
+                    <button onclick=" OpenStaff()">ADD STAFF </button>
+                    <button onclick="OpenPatient()">ADD PATIENT</button>
+                </div>
+
             
                     <table>
                         <thead>
@@ -152,6 +167,10 @@
                                     $link = "function/editpatient.php?loginID=$loginID";
                                  }
 
+                                 if($row['Email'] == $Email ){
+                                    continue;
+                                 }
+
                                 echo '
                             <tr>
                                 <td>
@@ -167,7 +186,7 @@
                                 </td>
 
                                 <td>
-                                   Admin
+                                  '.$position.'
                                 </td>
 
                                  <td>
@@ -183,9 +202,238 @@
                             ?>
                         </tbody>
                     </table>
+
+
+                    <form class="container-form" id="createadmin" enctype="multipart/form-data" action="../php/createadmin.php" method="post" >
+                            <div class="header-container">
+                                <h2>ADD ADMIN</h2>
+                                <i onclick="closeAdmin1()" class="fa-solid fa-circle-xmark exiticon1"></i>
+                            </div>
+
+                            <div class="form-wrap2">
+                                <div class="formbox2">
+                                    <img id="imagedis" src="../images/profile.png" alt="" />
+                                    <input
+                                        name="create-photo"
+                                        id="imgup"
+                                        type="file"
+                                        required
+                                        accept="image/*"
+                                        onchange="previewPhoto()"
+                                        />
+                                </div>
+
+
+                                <div class="formbox2">
+                                    <input type="text" name="Name" id="" placeholder="Name">
+                                </div>
+
+                                  <div class="formbox2">
+                                    <input type="email" name="Email" id="" placeholder="Email">
+                                </div>
+
+                                <div class="formbox2">
+                                    <input type="text" name="Password" id="" placeholder="Password">
+                                </div>
+
+                                  <div class="formbox2">
+                                    <input type="Submit" name="" id="" value="Submit">
+                                </div>
+                            </div>
+                    </form>  
+
+
+                    <!-----For staff  ---->
+
+
+                     <form class="container-form" id="createstaff" enctype="multipart/form-data" action="../php/createstaff.php" method="post" >
+                            <div class="header-container">
+                                <h2>ADD STAFF</h2>
+                                <i onclick="closeStaff1()" class="fa-solid fa-circle-xmark exiticon2"></i>
+                            </div>
+
+                            <div class="form-wrap2">
+                                <div class="formbox2">
+                                    <img id="imagedis2" src="../images/profile.png" alt="" />
+                                    <input
+                                        name="create-photo"
+                                        id="imgup2"
+                                        type="file"
+                                        required
+                                        accept="image/*"
+                                        onchange="previewPhoto2()"
+                                        />
+                                </div>
+
+
+                                <div class="formbox2">
+                                    <input type="text" name="Name" id="" placeholder="Name">
+                                </div>
+
+                                  <div class="formbox2">
+                                    <input type="email" name="Email" id="" placeholder="Email">
+                                </div>
+
+                                <div class="formbox2">
+                                    <input type="text" name="Password" id="" placeholder="Password">
+                                </div>
+
+                                <div class="formbox2">
+                                 <select name="Position" id="">
+                                    <option value="Doctor">Doctor</option>
+                                    <option value="Nurse">Nurse</option>
+                                    <option value="Staff">Staff</option>
+                                </select>
+                                </div>
+
+                                  <div class="formbox2">
+                                    <input type="Submit" name="" id="" value="Submit">
+                                </div>
+                            </div>
+                    </form>  
+
+                    <!------For patient ----->
+
+
+                     <form class="container-form" id="createpatient" enctype="multipart/form-data" action="../php/createpatient.php"
+                      method="post" >
+                            <div class="header-container">
+                                <h2>ADD PATIENT</h2>
+                                <i onclick="closePatient1()" class="fa-solid fa-circle-xmark exiticon3"></i>
+                            </div>
+
+                            <div class="form-wrap2">
+                                <div class="formbox2">
+                                    <img id="imagedis3" src="../images/profile.png" alt="" />
+                                    <input
+                                        name="create-photo"
+                                        id="imgup3"
+                                        type="file"
+                                        required
+                                        accept="image/*"
+                                        onchange="previewPhoto3()"
+                                        />
+                                </div>
+
+
+                                <div class="formbox2">
+                                    <input type="text" name="Name" id="" placeholder="Name">
+                                </div>
+
+                                  <div class="formbox2">
+                                    <input type="email" name="Email" id="" placeholder="Email">
+                                </div>
+
+                                <div class="formbox2">
+                                    <input type="text" name="Password" id="" placeholder="Password">
+                                </div>
+
+
+
+                                  <div class="formbox2">
+                                    <input type="Submit" name="" id="" value="Submit">
+                                </div>
+                            </div>
+                    </form>  
+
             </div>
+
+
+
+
              
         </section>
     </main>
+
+
+    
 </body>
+<!---for Containers --->
+<script>
+    function previewPhoto() {
+      const fileInput = document.getElementById("imgup");
+      const previewImg = document.getElementById("imagedis");
+      const file = fileInput.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImg.src = e.target.result;
+          previewImg.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      } else {
+        previewImg.src = "#";
+        previewImg.style.display = "none";
+      }
+    }
+
+     function previewPhoto2() {
+      const fileInput = document.getElementById("imgup2");
+      const previewImg = document.getElementById("imagedis2");
+      const file = fileInput.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImg.src = e.target.result;
+          previewImg.style.display = "block";   
+        };
+        reader.readAsDataURL(file);
+      } else {
+        previewImg.src = "#";
+        previewImg.style.display = "none";
+      }
+    }
+
+
+     function previewPhoto3() {
+      const fileInput = document.getElementById("imgup3");
+      const previewImg = document.getElementById("imagedis3");
+      const file = fileInput.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImg.src = e.target.result;
+          previewImg.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      } else {
+        previewImg.src = "#";
+        previewImg.style.display = "none";
+      }
+    }
+  </script>
+
+
+
+<script>
+    function Openadmin(){
+        const createAdmin = document.getElementById('createadmin');
+       createAdmin.classList.add('show');
+    }
+    function closeAdmin1(){
+        const createAdmin = document.getElementById('createadmin');
+       createAdmin.classList.remove('show');
+    }
+    function OpenStaff(){
+        const createStaff = document.getElementById('createstaff');
+       createStaff.classList.add('show');
+    }
+    function closeStaff1(){
+        const createStaff = document.getElementById('createstaff');
+       createStaff.classList.remove('show');
+    }
+
+     function OpenPatient(){
+        const createPatient = document.getElementById('createpatient');
+       createPatient.classList.add('show');
+    }
+    function closePatient1(){
+        const createPatient = document.getElementById('createpatient');
+       createPatient.classList.remove('show');
+    }
+
+</script>
 </html>

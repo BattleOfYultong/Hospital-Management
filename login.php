@@ -90,6 +90,11 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
           <h1>Login</h1>
         </div>
 
+        <div class="Errors">
+           <?php echo "$EmailErr" ?> 
+          <?php echo " $password1Err" ?> 
+        </div>
+
         <div class="form-wrapper">
           <div class="formbox">
             <input type="email" name="Email" id="" placeholder="Email" />
