@@ -63,6 +63,29 @@ if (isset($_GET['loginID'])) {
     }
     $stmt->close();
 }
+
+   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['Submit'])) {
+      
+        $Name = $_POST['Name'];
+        $Email = $_POST['Email'];
+        $Password = $_POST['Password'];
+    
+
+        $sql = "UPDATE account_tbl SET Name = '$Name', Email = '$Email', Password = '$Password' WHERE loginID = $UserID ";
+
+        if($connections->query($sql) === TRUE){
+                echo "<script>window.location.href ='editadmin.php?loginID=$UserID';</script>";
+                
+        }
+        else{
+            echo "Error:" .$sql. "br" .$connections->error;
+        }
+
+
+    } 
+}
+
 ?>
 
 
@@ -92,18 +115,20 @@ if (isset($_GET['loginID'])) {
                     <span>Edit Users</span>
                 </a>
             </li>
+
             <li>
-                <a href="">
+                <a href="../staffs.php">
                     <span>Staffs</span>
                 </a>
             </li>
+
             <li>
-                <a href="crud.php">
+                <a href="../patient.php">
                     <span>Patients</span>
                 </a>
             </li>
-            <li>
-                <a href="crud.php">
+            <li>                
+                <a href="../crud.php">
                     <span>Salaries</span>
                 </a>
             </li>
@@ -137,7 +162,7 @@ if (isset($_GET['loginID'])) {
                     <div class="editboxwrapper">
                          <div class="editbox">
                             <label for="name">ID:</label>
-                            <input type="text" name="Name" value="<?php echo $UserID ?>" readonly>
+                            <input type="number" name="loginID" value="<?php echo $UserID ?>" readonly>
                         </div>
 
                         <div class="editbox">
@@ -151,12 +176,12 @@ if (isset($_GET['loginID'])) {
 
                          <div class="editbox">
                             <label for="email">Password:</label>
-                            <input type="email" name="Email" value="<?php echo $UserPassword ?>" >
+                            <input type="text" name="Password" value="<?php echo $UserPassword ?>" >
                         </div>
 
                          <div class="editbox">
                             <label for="email">Role:</label>
-                            <input type="email" name="Email" value="ADMIN" readonly>
+                            <input type="text" name="Role" value="ADMIN" readonly>
                         </div>
                      </div>  
                        

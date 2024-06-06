@@ -63,6 +63,30 @@ if (isset($_GET['loginID'])) {
     }
     $stmt->close();
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['Submit'])) {
+      
+        $Name = $_POST['Name'];
+        $Email = $_POST['Email'];
+        $Password = $_POST['Password'];
+        $CurrentPosition = $_POST['Position'];
+    
+
+        $sql = "UPDATE account_tbl SET Name = '$Name', Email = '$Email', Password = '$Password' 
+        , Position = '$CurrentPosition' WHERE loginID = $UserID ";
+
+        if($connections->query($sql) === TRUE){
+                echo "<script>window.location.href ='editstaff.php?loginID=$UserID';</script>";
+                
+        }
+        else{
+            echo "Error:" .$sql. "br" .$connections->error;
+        }
+
+
+    } 
+}
 ?>
 
 
@@ -85,21 +109,24 @@ if (isset($_GET['loginID'])) {
              <h2><?php echo "$position" ?></h2>
         </div>
         <ul>
-            <li class="li-act">
+           <li class="li-act">
                 <a href="../admin.php">
                     <span>Edit Users</span>
                 </a>
             </li>
+
             <li>
-                <a href="">
+                <a href="../staffs.php">
                     <span>Staffs</span>
                 </a>
             </li>
+
             <li>
-                <a href="crud.php">
+                <a href="../patient.php">
                     <span>Patients</span>
                 </a>
             </li>
+
             <li>
                 <a href="crud.php">
                     <span>Salaries</span>
@@ -134,7 +161,7 @@ if (isset($_GET['loginID'])) {
                         <div class="editboxwrapper">
                             <div class="editbox">
                                 <label for="name">ID:</label>
-                                <input type="text" name="Name" value="<?php echo $UserID ?>" readonly>
+                                <input type="text" name="" value="<?php echo $UserID ?>" readonly>
                             </div>
 
                             <div class="editbox">
@@ -148,7 +175,7 @@ if (isset($_GET['loginID'])) {
 
                             <div class="editbox">
                                 <label for="password">Password:</label>
-                                <input type="password" name="Password" value="<?php echo $UserPassword ?>">
+                                <input type="test" name="Password" value="<?php echo $UserPassword ?>">
                             </div>
 
                             <div class="editbox">

@@ -487,6 +487,14 @@ form {
   width: 300px;
   padding: 10px;
 }
+#requestDoctorBtn {
+  background-color: rgb(7, 1, 44);
+  width: 500px;
+  padding: 10px;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
 /* for showing containers */
 .show {
   display: block;

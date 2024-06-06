@@ -192,7 +192,7 @@ if (isset($_SESSION['Email'])) {
                                  <td>
                                  <div class="button-container">
                                     <a href="'.$link.'">Edit</a>
-                                    <button>Delete</button>
+                                     <button onclick="confirmDelete(\'' .  $loginID . '\');">Delete</button>
                                   </div>
                                 </td>
 
@@ -435,5 +435,24 @@ if (isset($_SESSION['Email'])) {
        createPatient.classList.remove('show');
     }
 
+</script>
+
+<script>
+    function confirmDelete(loginID) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#FAEF5D',
+            cancelButtonColor: '#FAEF5D',
+            confirmButtonText: '<span style="color: black">Yes, delete it!</span>', // Set color to black
+            cancelButtonText: '<span style="color: black">Cancel</span>' // Set color to black
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "../php/delete.php?loginID=" + loginID;
+            }
+        });
+    }
 </script>
 </html>
